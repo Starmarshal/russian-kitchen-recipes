@@ -1,9 +1,10 @@
-'use client'
+'use client';
 
 import {Form} from '@heroui/form';
 import {Input} from '@heroui/input';
 import {useState} from 'react';
 import {Button} from '@heroui/react';
+import {registerUser} from '@/actions/register';
 
 interface IProps {
   onClose: () => void;
@@ -17,13 +18,16 @@ const RegistrationForm = ({onClose}: IProps) => {
   });
 
   const validateEmail = (email: string) => {
-    const emailRegex = /^[^s@]+@[^\s@]+\.[^\s@]+$]/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+
+    const result = await registerUser(formData);
+    console.log(result);
 
     onClose();
   };
@@ -78,7 +82,10 @@ const RegistrationForm = ({onClose}: IProps) => {
           inputWrapper: 'bg-default-100',
           input: 'text-sm focus:outline-none'
         }}
-        onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+        onChange={(e) => setFormData({
+          ...formData,
+          confirmPassword: e.target.value
+        })}
         validate={(value) => {
           if (!value) return 'Пароль для подтверждения обязателен!';
           if (value !== formData.password) return 'Пароли не совпадают';
@@ -86,10 +93,16 @@ const RegistrationForm = ({onClose}: IProps) => {
         }}
       />
       <div className="flex w-[100%] gap-4 items-center pt-8 justify-end">
-        <Button variant="light" onPress={onClose}>
+        <Button
+          variant="light"
+          onPress={onClose}
+        >
           Отмена
         </Button>
-        <Button color="primary" type="submit">
+        <Button
+          color="primary"
+          type="submit"
+        >
           Зарегистрироваться
         </Button>
       </div>

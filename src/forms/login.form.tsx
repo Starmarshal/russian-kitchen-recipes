@@ -1,9 +1,10 @@
-'use client'
+'use client';
 
 import {Form} from '@heroui/form';
 import {Input} from '@heroui/input';
 import {useState} from 'react';
 import {Button} from '@heroui/react';
+import {signInWithCredentials} from '@/actions/sign-in';
 
 interface IProps {
   onClose: () => void;
@@ -18,6 +19,10 @@ const LoginForm = ({onClose}: IProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+
+    const result = await signInWithCredentials(formData.email, formData.password);
+
+    console.log('result', result);
 
     onClose();
   };
@@ -61,10 +66,16 @@ const LoginForm = ({onClose}: IProps) => {
         }}
       />
       <div className="flex w-[100%] gap-4 items-center pt-8 justify-end">
-        <Button variant="light" onPress={onClose}>
+        <Button
+          variant="light"
+          onPress={onClose}
+        >
           Отмена
         </Button>
-        <Button color="primary" type="submit">
+        <Button
+          color="primary"
+          type="submit"
+        >
           Войти
         </Button>
       </div>
