@@ -1,7 +1,7 @@
 'use client';
 
 import {HeroUIProvider} from '@heroui/system';
-import Header from '@/components/UI/header';
+import Header from '@/components/UI/layout/header';
 
 export function Providers({children}: { children: React.ReactNode }) {
   return (

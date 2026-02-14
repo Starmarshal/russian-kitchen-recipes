@@ -12,6 +12,9 @@ import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {siteConfig} from '@/config/site.config';
 import {layoutConfig} from '@/config/layout.config';
+import RegistrationModal from '@/components/UI/modals/registration.modal';
+import LoginModal from '@/components/UI/modals/login.modal';
+import {useState} from 'react';
 
 export const Logo = () => {
   return (
@@ -27,6 +30,9 @@ export const Logo = () => {
 
 export default function Header() {
   const pathname = usePathname();
+
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   const getNavItems = () => {
     if (!siteConfig.navItems) return null;
@@ -52,10 +58,10 @@ export default function Header() {
   };
 
   return (
-    <Navbar style={{height:`${layoutConfig.headerHeight}`}}>
+    <Navbar style={{height: `${layoutConfig.headerHeight}`}}>
       <NavbarBrand>
         <Link
-          href="/"
+          href="/public"
           className="flex gap-1"
         >
           <Logo />
@@ -70,7 +76,15 @@ export default function Header() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Логин</Link>
+          <Button
+            as={Link}
+            color="secondary"
+            href="#"
+            variant="flat"
+            onPress={() => setIsLoginOpen(true)}
+          >
+            Логин
+          </Button>
         </NavbarItem>
         <NavbarItem>
           <Button
@@ -78,11 +92,21 @@ export default function Header() {
             color="primary"
             href="#"
             variant="flat"
+            onPress={() => setIsRegistrationOpen(true)}
           >
             Регистрация
           </Button>
         </NavbarItem>
       </NavbarContent>
+      <RegistrationModal
+        isOpen={isRegistrationOpen}
+        onClose={() => setIsRegistrationOpen(false)}
+      />
+      <LoginModal
+        isOpen={isLoginOpen}
+        onClose={() => setIsLoginOpen(false)}
+      />
+
     </Navbar>
   );
 }
