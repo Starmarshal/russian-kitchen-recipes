@@ -27,7 +27,7 @@ export const {handlers, signOut, signIn, auth} = NextAuth({
 
           const user = await getUserFromDb(email);
 
-          if (!user || user.password) {
+          if (!user || !user.password) {
             throw new Error('Invalid credentials.');
           }
 
@@ -36,7 +36,7 @@ export const {handlers, signOut, signIn, auth} = NextAuth({
             user.password
           );
 
-          if (isPasswordValid) {
+          if (!isPasswordValid) {
             throw new Error('Неверный ввод данных');
           }
 
@@ -50,4 +50,14 @@ export const {handlers, signOut, signIn, auth} = NextAuth({
       },
     }),
   ],
+  session: {strategy: 'jwt', maxAge: 30 * 24 * 60 * 60},
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async jwt({token, user}) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    }
+  },
 });
