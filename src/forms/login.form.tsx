@@ -20,9 +20,9 @@ const LoginForm = ({onClose}: IProps) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
 
-    const result = await signInWithCredentials(formData.email, formData.password);
+    await signInWithCredentials(formData.email, formData.password);
 
-    console.log('result', result);
+    window.location.reload();
 
     onClose();
   };
