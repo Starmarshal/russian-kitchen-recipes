@@ -42,14 +42,14 @@ export default async function RootLayout({
           <Header />
           <Title/>
           <main
-            className={`flex flex-col w-full justify-start items-center`}
+            className={`flex flex-col max-w-[1024px] mx-auto justify-start items-center px-[24px]`}
             style={{height: `calc(100vh - ${layoutConfig.headerHeight} - ${layoutConfig.footerHeight})`}}
           >
             {children}
           </main>
           <footer
-            className={`flex justify-center items-center h-[${layoutConfig.footerHeight}]`}
-            style={{height: `${layoutConfig.footerHeight}`}}
+            className={"flex justify-center items-center"}
+            style={{height: layoutConfig.footerHeight}}
           >
             <p>{siteConfig.description}</p>
           </footer>

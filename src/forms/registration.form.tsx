@@ -44,7 +44,7 @@ const RegistrationForm = ({onClose}: IProps) => {
         placeholder="Введите email"
         type="email"
         value={formData.email}
-        className={{
+        classNames={{
           inputWrapper: 'bg-default-100',
           input: 'text-sm focus:outline-none'
         }}
@@ -61,7 +61,7 @@ const RegistrationForm = ({onClose}: IProps) => {
         placeholder="Введите пароль"
         type="password"
         value={formData.password}
-        className={{
+        classNames={{
           inputWrapper: 'bg-default-100',
           input: 'text-sm focus:outline-none'
         }}
@@ -78,7 +78,7 @@ const RegistrationForm = ({onClose}: IProps) => {
         placeholder="Подтвердите пароль"
         type="password"
         value={formData.confirmPassword}
-        className={{
+        classNames={{
           inputWrapper: 'bg-default-100',
           input: 'text-sm focus:outline-none'
         }}

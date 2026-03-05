@@ -71,7 +71,7 @@ export default function Header() {
   };
 
   return (
-    <Navbar style={{height: `${layoutConfig.headerHeight}`}}>
+    <Navbar style={{height: layoutConfig.headerHeight}}>
       <NavbarBrand>
         <Link
           href="/public"

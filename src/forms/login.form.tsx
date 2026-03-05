@@ -39,7 +39,7 @@ const LoginForm = ({onClose}: IProps) => {
         placeholder="Введите email"
         type="email"
         value={formData.email}
-        className={{
+        classNames={{
           inputWrapper: 'bg-default-100',
           input: 'text-sm focus:outline-none'
         }}
@@ -55,7 +55,7 @@ const LoginForm = ({onClose}: IProps) => {
         placeholder="Введите пароль"
         type="password"
         value={formData.password}
-        className={{
+        classNames={{
           inputWrapper: 'bg-default-100',
           input: 'text-sm focus:outline-none'
         }}
