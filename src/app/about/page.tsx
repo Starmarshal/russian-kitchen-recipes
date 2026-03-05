@@ -3,7 +3,7 @@ import PageContent from '@/components/common/page-content';
 const AboutPage = () => {
   return (
     <div>
-      <PageContent/>
+      <PageContent />
     </div>
   );
 };

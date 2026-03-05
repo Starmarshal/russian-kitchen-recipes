@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {Button} from '@heroui/react';
 import Link from 'next/link';
@@ -11,7 +11,12 @@ const NotFoundPage = () => {
       <h1 className="text-3xl font-bold tracking-tight">Страница не найдена</h1>
 
       <div className="pt-6">
-        <Button as={Link} color="primary" variant="shadow" href="/">
+        <Button
+          as={Link}
+          color="primary"
+          variant="shadow"
+          href="/"
+        >
           Вернуться на главную
         </Button>
       </div>
