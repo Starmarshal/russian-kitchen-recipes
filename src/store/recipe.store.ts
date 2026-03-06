@@ -3,9 +3,9 @@ import {
   deleteRecipe,
   getRecipes,
   updateRecipe
-} from "@/actions/recipe";
-import { IRecipe } from "@/types/recipe";
-import { create } from "zustand";
+} from '@/actions/recipe';
+import {IRecipe} from '@/types/recipe';
+import {create} from 'zustand';
 
 interface IActionResult {
   success: boolean;
@@ -28,23 +28,23 @@ export const useRecipeStore = create<IRecipeState>((set) => ({
   isLoading: false,
   error: null,
   loadRecipes: async () => {
-    set({ isLoading: true, error: null });
+    set({isLoading: true, error: null});
 
     try {
       const result = await getRecipes();
 
       if (result.success) {
-        set({ recipes: result.recipes, isLoading: false });
+        set({recipes: result.recipes, isLoading: false});
       } else {
-        set({ error: result.error, isLoading: false });
+        set({error: result.error, isLoading: false});
       }
     } catch (error) {
-      console.error("error", error);
-      set({ error: "Ошибка при загрузке рецептов", isLoading: false });
+      console.error('error', error);
+      set({error: 'Ошибка при загрузке рецептов', isLoading: false});
     }
   },
   addRecipe: async (formData: FormData) => {
-    set({ error: null });
+    set({error: null});
 
     try {
       const result = await createRecipe(formData);
@@ -53,19 +53,19 @@ export const useRecipeStore = create<IRecipeState>((set) => ({
           recipes: [...state.recipes, result.recipe!],
           isLoading: false
         }));
-        return { success: true, recipe: result.recipe };
+        return {success: true, recipe: result.recipe};
       } else {
-        set({ error: result.error, isLoading: false });
-        return { success: false, error: result.error };
+        set({error: result.error, isLoading: false});
+        return {success: false, error: result.error};
       }
     } catch (error) {
-      console.error("error", error);
-      set({ error: "Ошибка при добавлении рецепта", isLoading: false });
-      return { success: false, error: "Ошибка при добавлении рецепта" };
+      console.error('error', error);
+      set({error: 'Ошибка при добавлении рецепта', isLoading: false});
+      return {success: false, error: 'Ошибка при добавлении рецепта'};
     }
   },
   updateRecipe: async (id: string, formData: FormData) => {
-    set({ error: null });
+    set({error: null});
 
     try {
       const result = await updateRecipe(id, formData);
@@ -76,19 +76,19 @@ export const useRecipeStore = create<IRecipeState>((set) => ({
           ),
           isLoading: false
         }));
-        return { success: true, recipe: result.recipe };
+        return {success: true, recipe: result.recipe};
       } else {
-        set({ error: result.error, isLoading: false });
-        return { success: false, error: result.error };
+        set({error: result.error, isLoading: false});
+        return {success: false, error: result.error};
       }
     } catch (error) {
-      console.error("error", error);
-      set({ error: "Ошибка при обновлении рецепта", isLoading: false });
-      return { success: false, error: "Ошибка при обновлении рецепта" };
+      console.error('error', error);
+      set({error: 'Ошибка при обновлении рецепта', isLoading: false});
+      return {success: false, error: 'Ошибка при обновлении рецепта'};
     }
   },
   removeRecipe: async (id: string) => {
-    set({ error: null });
+    set({error: null});
 
     try {
       const result = await deleteRecipe(id);
@@ -99,11 +99,11 @@ export const useRecipeStore = create<IRecipeState>((set) => ({
           isLoading: false
         }));
       } else {
-        set({ error: result.error, isLoading: false });
+        set({error: result.error, isLoading: false});
       }
     } catch (error) {
-      console.error("error", error);
-      set({ error: "Ошибка при удалении рецепта", isLoading: false });
+      console.error('error', error);
+      set({error: 'Ошибка при удалении рецепта', isLoading: false});
     }
   }
 }));

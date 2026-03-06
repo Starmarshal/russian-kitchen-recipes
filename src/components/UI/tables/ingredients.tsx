@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { CATEGORY_OPTIONS, UNIT_OPTIONS } from "@/constants/select-options";
-import { useAuthStore } from "@/store/auth.store";
-import { useIngredientStore } from "@/store/ingredient.store";
+import {CATEGORY_OPTIONS, UNIT_OPTIONS} from '@/constants/select-options';
+import {useAuthStore} from '@/store/auth.store';
+import {useIngredientStore} from '@/store/ingredient.store';
 import {
   Button,
   Table,
@@ -11,11 +11,11 @@ import {
   TableColumn,
   TableHeader,
   TableRow
-} from "@heroui/react";
+} from '@heroui/react';
 
 const IngredientsTable = () => {
-  const { ingredients, removeIngredient, isLoading } = useIngredientStore();
-  const { isAuth } = useAuthStore();
+  const {ingredients, removeIngredient, isLoading} = useIngredientStore();
+  const {isAuth} = useAuthStore();
 
   const handleDelete = async (id: string) => {
     await removeIngredient(id);
@@ -39,10 +39,10 @@ const IngredientsTable = () => {
     <Table
       aria-label="Список ингредиентов"
       classNames={{
-        wrapper: "mt-4",
-        table: "w-full",
-        th: "text-black",
-        td: "text-black"
+        wrapper: 'mt-4',
+        table: 'w-full',
+        th: 'text-black',
+        td: 'text-black'
       }}
     >
       <TableHeader>
@@ -62,9 +62,9 @@ const IngredientsTable = () => {
             <TableCell>
               {ingredient.pricePerUnit !== null
                 ? `${ingredient.pricePerUnit} ₽`
-                : "-"}
+                : '-'}
             </TableCell>
-            <TableCell>{ingredient.description || "-"}</TableCell>
+            <TableCell>{ingredient.description || '-'}</TableCell>
             <TableCell>
               <Button
                 color="danger"

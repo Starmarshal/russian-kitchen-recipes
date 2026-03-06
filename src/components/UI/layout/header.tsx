@@ -54,9 +54,10 @@ export default function Header() {
 
     return siteConfig.navItems
       .filter((item) => {
-        if(item.href === '/ingredients') {
+        if (item.href === '/ingredients') {
           return isAuth;
-        };
+        }
+        ;
         return true;
       })
       .map((item) => {

@@ -1,4 +1,4 @@
-import {IIngredients} from '@/types/ingredients';
+import { IIngredients } from "@/types/ingredients";
 
 export interface IRecipeIngredient {
   id: string;
@@ -12,5 +12,5 @@ export interface IRecipe {
   name: string;
   description: string;
   imageUrl?: string | null;
-  ingredients: IRecipeIngredient[];
+  ingredient: IRecipeIngredient[];
 }

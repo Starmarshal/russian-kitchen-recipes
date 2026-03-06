@@ -40,7 +40,7 @@ export default async function RootLayout({
       <SessionProvider session={session}>
         <AppLoader>
           <div className="flex min-h-screen flex-col justify-between">
-            <div className='flex flex-col'>
+            <div className="flex flex-col">
               <Header />
               <main
                 className={`flex flex-col max-w-[1024px] mx-auto justify-start items-center px-[24px]`}

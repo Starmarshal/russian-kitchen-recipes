@@ -4,8 +4,8 @@ import IngredientsTable from '@/components/UI/tables/ingredients';
 const IngredientsPage = () => {
   return (
     <div>
-      <IngredientForm/>
-      <IngredientsTable/>
+      <IngredientForm />
+      <IngredientsTable />
     </div>
   );
 };

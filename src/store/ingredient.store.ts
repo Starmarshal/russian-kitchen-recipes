@@ -68,7 +68,7 @@ export const useIngredientStore = create<IngredientState>((set) => ({
         set({error: result.error, isLoading: false});
       }
     } catch (error) {
-      console.log("error", error);
+      console.log('error', error);
       set({error: 'Ошибка при удалении ингредиента', isLoading: false});
     }
   },
