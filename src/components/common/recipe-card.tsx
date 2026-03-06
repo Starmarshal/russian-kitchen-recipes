@@ -1,7 +1,7 @@
 'use client';
 
 import {IRecipe} from '@/types/recipe';
-import {Card, CardBody, CardHeader, Button} from '@heroui/react';
+import {Button, Card, CardBody, CardHeader} from '@heroui/react';
 import {useRecipeStore} from '@/store/recipe.store';
 import Link from 'next/link';
 import {useTransition} from 'react';

@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import RecipeForm from "@/forms/recipe.form";
-import { useRecipeStore } from "@/store/recipe.store";
-import { IRecipe } from "@/types/recipe";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import RecipeForm from '@/forms/recipe.form';
+import {useRecipeStore} from '@/store/recipe.store';
+import {IRecipe} from '@/types/recipe';
+import {useParams} from 'next/navigation';
+import {useEffect, useState} from 'react';
 
 const EditRecipePage = () => {
-  const { id } = useParams<{ id: string }>();
-  const { recipes, isLoading, error } = useRecipeStore();
+  const {id} = useParams<{ id: string }>();
+  const {recipes, isLoading, error} = useRecipeStore();
   const [recipe, setRecipe] = useState<IRecipe | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
 

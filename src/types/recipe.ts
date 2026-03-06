@@ -1,4 +1,4 @@
-import { IIngredients } from "@/types/ingredients";
+import {IIngredients} from '@/types/ingredients';
 
 export interface IRecipeIngredient {
   id: string;

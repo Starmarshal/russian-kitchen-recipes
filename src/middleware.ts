@@ -1,34 +1,34 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { getToken, GetTokenParams } from "next-auth/jwt";
+import type {NextRequest} from 'next/server';
+import {NextResponse} from 'next/server';
+import {getToken, GetTokenParams} from 'next-auth/jwt';
 
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const {pathname} = request.nextUrl;
 
   let params: GetTokenParams = {
     req: request,
-    secret: process.env.AUTH_SECRET ?? "secret"
+    secret: process.env.AUTH_SECRET ?? 'secret'
   };
 
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === 'production') {
     params = {
       ...params,
-      cookieName: "__Secure-authjs.session-token"
+      cookieName: '__Secure-authjs.session-token'
     };
   }
 
   const token = await getToken(params);
 
-  const protectedRoutes = ["/ingredients", "/recipes/new", "/recipes/:path*"];
+  const protectedRoutes = ['/ingredients', '/recipes/new', '/recipes/:path*'];
 
   if (
     protectedRoutes.some((route) =>
-      pathname.startsWith(route.replace(":path*", ""))
+      pathname.startsWith(route.replace(':path*', ''))
     )
   ) {
     if (!token) {
-      const url = new URL("/error", request.url);
-      url.searchParams.set("message", "Недостаточно прав");
+      const url = new URL('/error', request.url);
+      url.searchParams.set('message', 'Недостаточно прав');
       return NextResponse.redirect(url);
     }
   }
@@ -37,5 +37,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/ingredients", "/recipes/new", "/recipes/:path*"]
+  matcher: ['/ingredients', '/recipes/new', '/recipes/:path*']
 };

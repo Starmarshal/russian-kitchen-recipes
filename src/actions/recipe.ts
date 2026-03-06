@@ -36,11 +36,11 @@ export async function createRecipe(formData: FormData) {
         const quantityRaw = String(formData.get(`quantity_${index}`) || '').trim();
         const quantity = parseFloat(quantityRaw);
 
-        return { ingredientId, quantity };
+        return {ingredientId, quantity};
       });
 
     const hasInvalidIngredients = ingredients.some(
-      ({ ingredientId, quantity }) =>
+      ({ingredientId, quantity}) =>
         !ingredientId || Number.isNaN(quantity) || quantity <= 0
     );
 
@@ -57,8 +57,8 @@ export async function createRecipe(formData: FormData) {
         description,
         imageUrl,
         ingredient: {
-          create: ingredients.map(({ ingredientId, quantity }) => ({
-            ingredient: { connect: { id: ingredientId } },
+          create: ingredients.map(({ingredientId, quantity}) => ({
+            ingredient: {connect: {id: ingredientId}},
             quantity
           }))
         }
@@ -72,7 +72,7 @@ export async function createRecipe(formData: FormData) {
       }
     });
 
-    return { success: true, recipe };
+    return {success: true, recipe};
   } catch (error: any) {
     console.error('Error creating recipe:', error);
     console.error('message:', error?.message);
