@@ -5,7 +5,7 @@ import {Form} from '@heroui/form';
 import {Input} from '@heroui/input';
 import {Button, Select, SelectItem} from '@heroui/react';
 import {CATEGORY_OPTIONS, UNIT_OPTIONS} from '@/constants/select-options';
-import {createIngredient} from '@/actions/ingredient';
+import {useIngredientStore} from '@/store/ingredient.store';
 
 const InitialState = {
   name: '',
@@ -17,6 +17,7 @@ const InitialState = {
 
 const IngredientForm = () => {
   const [error, setError] = useState<string | null>(null);
+  const {addIngredient} = useIngredientStore();
   const [formData, setFormData] = useState(InitialState);
 
   const [isPending, startTransition] = useTransition();
@@ -25,15 +26,14 @@ const IngredientForm = () => {
     console.log('Form submitted:', formData);
 
     startTransition(async () => {
-      const result = await createIngredient(formData);
+      const result = await addIngredient(formData);
+      const storeError = useIngredientStore.getState().error;
 
-      if (result.error) {
-        setError(result.error);
-        alert('Ошибка при создании ингредиента');
+      if (storeError) {
+        setError(storeError);
       } else {
         setError(null);
         setFormData(InitialState);
-        alert('Успешное создание ингредиента');
       }
     });
   };
@@ -41,7 +41,7 @@ const IngredientForm = () => {
   return (
     <>
       <Form
-        className="w-[400px]"
+        className="w-full"
         action={handleSubmit}
       >
         {error && <p className="text-red-500 nb-4">{error}</p>}
