@@ -81,7 +81,7 @@ export default function Header() {
     <Navbar style={{height: layoutConfig.headerHeight}}>
       <NavbarBrand>
         <Link
-          href="/public"
+          href="/src/app/(public)"
           className="flex gap-1"
         >
           <Logo />
